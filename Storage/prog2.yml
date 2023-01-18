@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prog2
+spec:
+  volumes:
+    - name: pv-prog2
+      persistentVolumeClaim:
+        claimName: pvc-prog2
+  containers:
+    - name: alpine
+      image: alpine
+      command: ["/bin/sh","-c"]
+      args: ["top >> /opt/data2/top.txt"]
+      volumeMounts:
+        - mountPath: "/opt/data2"
+          name: pv-prog2

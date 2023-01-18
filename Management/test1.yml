@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: test1
+  name: test1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: test1
+    spec:
+      containers:
+      - image: prvinsm21/ubuntu-nginx
+        name: ubuntu-nginx
+        command:
+         - "sleep"
+         - "5000"
+        resources: {}
+status: {}

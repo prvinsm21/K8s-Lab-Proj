@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pod3
+  name: pod3
+spec:
+  containers:
+  - image: prvinsm21/ubuntu-nginx
+    name: pod3
+  nodeName: kworker2
+

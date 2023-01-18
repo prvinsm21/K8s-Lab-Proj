@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: prog1
+  name: prog1
+spec:
+  containers:
+  - image: prvinsm21/ubuntu-nginx
+    name: prog1
+    command:
+     - "touch"
+     - "test1.txt"
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

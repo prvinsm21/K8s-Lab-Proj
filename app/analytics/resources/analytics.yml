@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: analytics
+  name: analytics
+spec:
+  containers:
+  - image: prvinsm21/ubuntu-nginx:v1
+    name: analytics
+    volumeMounts:
+     - name: test
+       mountPath: "/app/analytics/resources"
+       readOnly: true
+  restartPolicy: Always
+  volumes:
+   - name: test
+     configMap:
+      name: cm8
+
+status: {}

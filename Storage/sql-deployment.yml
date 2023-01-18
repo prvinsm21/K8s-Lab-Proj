@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prog6
+spec:
+  volumes:
+    - name: pv-prog6
+      persistentVolumeClaim:
+        claimName: pvc-prog6
+  containers:
+    - name: mysql
+      image: mysql:8.0
+      volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          name: pv-prog6

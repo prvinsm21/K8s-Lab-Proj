@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sts-prog1
+spec:
+  selector:
+    matchLabels:
+      app: label-sts # has to match .spec.template.metadata.labels
+  serviceName: svc-prog1
+  replicas: 3 # by default is 1
+  minReadySeconds: 10 # by default is 0
+  template:
+    metadata:
+      labels:
+        app: label-sts # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: ctr-sts-prog1
+        image: httpd

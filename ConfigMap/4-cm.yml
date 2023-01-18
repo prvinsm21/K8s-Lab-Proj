@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: 4-configmap
+data:
+  channel.name: "LinuxWorld"
+  channel.owner: "Macko"

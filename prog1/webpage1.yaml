@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: webpage-deployment
+
+  labels:
+
+    app: webpage
+
+spec:
+
+  replicas: 3
+
+  selector:
+
+    matchLabels:
+
+      app: webpage
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: webpage
+
+    spec:
+
+      containers:
+
+      - name: webpage
+
+        image: kodekloud/webapp-color:v1
+
+        ports:
+
+        - containerPort: 80
+

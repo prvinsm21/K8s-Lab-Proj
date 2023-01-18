@@ -1,0 +1,31 @@
+{
+  "store": {
+    "store.host": "10.0.4.4",
+    "store.port": 27017,
+    "store.dbs": "IAP",
+    "analytics.imraw": "da_postimraw",
+    "mongo.timeout":"60000"
+  },
+
+  "analyticsim": {
+    "raw.auto.submitters" : "TIBCO,montoo-bell"
+    "resolved.by.workflow" : "montoo-bell"
+  },
+
+  "consumer": {
+    "bootstrap.servers" : "10.0.4.4:9092,10.0.4.4:9093,10.0.4.4:9094",
+    "zookeeper.connect" : "10.0.4.4:2181",
+    "topic" : "AnalyticsIM",
+    "group.id": "myGroup",
+    "enable.auto.commit": true,
+    "key.deserializer": "org.apache.kafka.common.serialization.StringDeserializer",
+    "value.deserializer": "com.cgi.atom.common.codec.JsonDecoder",
+    "session.timeout.ms": 10000,
+    "fetch.min.bytes": 50000,
+    "receive.buffer.bytes": 262144,
+    "max.partition.fetch.bytes": 2097152,
+    "connections.max.idle.ms": 540000,
+    "taskmanager.numberOfTaskSlots":1,
+    "parallelization.degree.default":1
+  }
+}

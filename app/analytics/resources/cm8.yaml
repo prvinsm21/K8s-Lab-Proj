@@ -1,0 +1,87 @@
+apiVersion: v1
+data:
+  cm8.yaml: ""
+  config.json: |
+    {
+      "store": {
+        "store.host": "10.0.4.4",
+        "store.port": 27017,
+        "store.dbs": "IAP",
+        "analytics.imraw": "da_postimraw",
+        "mongo.timeout":"60000"
+      },
+
+      "analyticsim": {
+        "raw.auto.submitters" : "TIBCO,montoo-bell"
+        "resolved.by.workflow" : "montoo-bell"
+      },
+
+      "consumer": {
+        "bootstrap.servers" : "10.0.4.4:9092,10.0.4.4:9093,10.0.4.4:9094",
+        "zookeeper.connect" : "10.0.4.4:2181",
+        "topic" : "AnalyticsIM",
+        "group.id": "myGroup",
+        "enable.auto.commit": true,
+        "key.deserializer": "org.apache.kafka.common.serialization.StringDeserializer",
+        "value.deserializer": "com.cgi.atom.common.codec.JsonDecoder",
+        "session.timeout.ms": 10000,
+        "fetch.min.bytes": 50000,
+        "receive.buffer.bytes": 262144,
+        "max.partition.fetch.bytes": 2097152,
+        "connections.max.idle.ms": 540000,
+        "taskmanager.numberOfTaskSlots":1,
+        "parallelization.degree.default":1
+      }
+    }
+  log4j.properties: |+
+    #####################################################
+    # Place holder of all the log4j properties.
+    # author: Nageswara Rao V
+    # since: Jan 10, 2016.
+    #####################################################
+    ### set log levels - for more verbose logging change 'info' to 'debug' ###
+    log4j.rootLogger=INFO, rolling
+    log4j.com.cgi.psg.tpm=info
+    ### direct messages to file log ###
+
+    log4j.appender.rolling=org.apache.log4j.RollingFileAppender
+    log4j.appender.rolling.File=logs/analyticsp.log
+    log4j.appender.rolling.MaxFileSize=500KB
+    log4j.appender.rolling.MaxBackupIndex=50
+    log4j.appender.rolling.layout=org.apache.log4j.PatternLayout
+    log4j.appender.rolling.layout.ConversionPattern=%d - [%-5p] %c:%L %m%n
+
+
+  log4j2.xml: |-
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Configuration status="INFO">
+
+        <!-- Author:  Nageswara Rao V  -->
+        <Appenders>
+    <!--        <Console name="Console" target="SYSTEM_OUT">
+                <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+            </Console>-->
+
+            <RollingFile name="RollingFile" filename="log/analyticsx.log"
+                         filepattern="log/%d{yyyyMMddHHmmss}-%i-tpmim.log">
+                <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+                <Policies>
+                    <SizeBasedTriggeringPolicy size="100 MB" />
+                </Policies>
+                <DefaultRolloverStrategy max="20" />
+            </RollingFile>
+
+        </Appenders>
+        <Loggers>
+            <Root level="info">
+    <!--
+                <AppenderRef ref="Console" />
+    -->
+                <AppenderRef ref="RollingFile" />
+            </Root>
+        </Loggers>
+    </Configuration>
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: cm8

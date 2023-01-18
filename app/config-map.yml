@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: analytics-config
+data:
+  # property-like keys; each key maps to a simple value
+   store: |
+    store.host="10.0.4.4"
+    store.port="27017"
+    store.dbs="IAP"
+    analytics.imraw="da_postimraw"
+    mongo.timeout="60000"
+ 
